@@ -61,7 +61,7 @@
 13950230,Thursday,1
 13950231,Friday,1
 13950301,Saturday,0
-13950302,Sunday,0
+13950302,Sunday,1
 13950303,Monday,0
 13950304,Tuesday,0
 13950305,Wednesday,0
@@ -96,7 +96,7 @@
 13950403,Thursday,1
 13950404,Friday,1
 13950405,Saturday,0
-13950406,Sunday,0
+13950406,Sunday,1
 13950407,Monday,0
 13950408,Tuesday,0
 13950409,Wednesday,0
@@ -106,7 +106,7 @@
 13950413,Sunday,0
 13950414,Monday,0
 13950415,Tuesday,0
-13950416,Wednesday,0
+13950416,Wednesday,1
 13950417,Thursday,1
 13950418,Friday,1
 13950419,Saturday,0
@@ -130,7 +130,7 @@
 13950506,Wednesday,0
 13950507,Thursday,1
 13950508,Friday,1
-13950509,Saturday,0
+13950509,Saturday,1
 13950510,Sunday,0
 13950511,Monday,0
 13950512,Tuesday,0
@@ -174,7 +174,7 @@
 13950619,Friday,1
 13950620,Saturday,0
 13950621,Sunday,0
-13950622,Monday,0
+13950622,Monday,1
 13950623,Tuesday,0
 13950624,Wednesday,0
 13950625,Thursday,1
@@ -182,7 +182,7 @@
 13950627,Saturday,0
 13950628,Sunday,0
 13950629,Monday,0
-13950630,Tuesday,0
+13950630,Tuesday,1
 13950631,Wednesday,0
 13950701,Thursday,1
 13950702,Friday,1
@@ -203,8 +203,8 @@
 13950717,Saturday,0
 13950718,Sunday,0
 13950719,Monday,0
-13950720,Tuesday,0
-13950721,Wednesday,0
+13950720,Tuesday,1
+13950721,Wednesday,1
 13950722,Thursday,1
 13950723,Friday,1
 13950724,Saturday,0
@@ -243,7 +243,7 @@
 13950827,Thursday,1
 13950828,Friday,1
 13950829,Saturday,0
-13950830,Sunday,0
+13950830,Sunday,1
 13950901,Monday,0
 13950902,Tuesday,0
 13950903,Wednesday,0
@@ -251,9 +251,9 @@
 13950905,Friday,1
 13950906,Saturday,0
 13950907,Sunday,0
-13950908,Monday,0
+13950908,Monday,1
 13950909,Tuesday,0
-13950910,Wednesday,0
+13950910,Wednesday,1
 13950911,Thursday,1
 13950912,Friday,1
 13950913,Saturday,0
@@ -270,7 +270,7 @@
 13950924,Wednesday,0
 13950925,Thursday,1
 13950926,Friday,1
-13950927,Saturday,0
+13950927,Saturday,1
 13950928,Sunday,0
 13950929,Monday,0
 13950930,Tuesday,0
@@ -384,7 +384,7 @@
 13960118,Friday,1
 13960119,Saturday,0
 13960120,Sunday,0
-13960121,Monday,0
+13960121,Monday,1
 13960122,Tuesday,0
 13960123,Wednesday,0
 13960124,Thursday,1
@@ -398,7 +398,7 @@
 13960201,Friday,1
 13960202,Saturday,0
 13960203,Sunday,0
-13960204,Monday,0
+13960204,Monday,1
 13960205,Tuesday,0
 13960206,Wednesday,0
 13960207,Thursday,1
@@ -460,8 +460,8 @@
 13960401,Thursday,1
 13960402,Friday,1
 13960403,Saturday,0
-13960404,Sunday,0
-13960405,Monday,0
+13960404,Sunday,1
+13960405,Monday,1
 13960406,Tuesday,0
 13960407,Wednesday,0
 13960408,Thursday,1
@@ -484,7 +484,7 @@
 13960425,Sunday,0
 13960426,Monday,0
 13960427,Tuesday,0
-13960428,Wednesday,0
+13960428,Wednesday,1
 13960429,Thursday,1
 13960430,Friday,1
 13960431,Saturday,0
@@ -536,7 +536,7 @@
 13960615,Wednesday,0
 13960616,Thursday,1
 13960617,Friday,1
-13960618,Saturday,0
+13960618,Saturday,1
 13960619,Sunday,0
 13960620,Monday,0
 13960621,Tuesday,0
@@ -557,8 +557,8 @@
 13960705,Wednesday,0
 13960706,Thursday,1
 13960707,Friday,1
-13960708,Saturday,0
-13960709,Sunday,0
+13960708,Saturday,1
+13960709,Sunday,1
 13960710,Monday,0
 13960711,Tuesday,0
 13960712,Wednesday,0
@@ -607,7 +607,7 @@
 13960825,Thursday,1
 13960826,Friday,1
 13960827,Saturday,0
-13960828,Sunday,0
+13960828,Sunday,1
 13960829,Monday,0
 13960830,Tuesday,0
 13960901,Wednesday,0
@@ -615,7 +615,7 @@
 13960903,Friday,1
 13960904,Saturday,0
 13960905,Sunday,0
-13960906,Monday,0
+13960906,Monday,1
 13960907,Tuesday,0
 13960908,Wednesday,0
 13960909,Thursday,1
@@ -624,7 +624,7 @@
 13960912,Sunday,0
 13960913,Monday,0
 13960914,Tuesday,0
-13960915,Wednesday,0
+13960915,Wednesday,1
 13960916,Thursday,1
 13960917,Friday,1
 13960918,Saturday,0
@@ -699,7 +699,7 @@
 13961127,Friday,1
 13961128,Saturday,0
 13961129,Sunday,0
-13961130,Monday,0
+13961130,Monday,1
 13961201,Tuesday,0
 13961202,Wednesday,0
 13961203,Thursday,1
@@ -769,7 +769,7 @@
 13970207,Friday,1
 13970208,Saturday,0
 13970209,Sunday,0
-13970210,Monday,0
+13970210,Monday,1
 13970211,Tuesday,0
 13970212,Wednesday,0
 13970213,Thursday,1
@@ -813,7 +813,7 @@
 13970320,Sunday,0
 13970321,Monday,0
 13970322,Tuesday,0
-13970323,Wednesday,0
+13970323,Wednesday,1
 13970324,Thursday,1
 13970325,Friday,1
 13970326,Saturday,0
@@ -837,7 +837,7 @@
 13970413,Wednesday,0
 13970414,Thursday,1
 13970415,Friday,1
-13970416,Saturday,0
+13970416,Saturday,1
 13970417,Sunday,0
 13970418,Monday,0
 13970419,Tuesday,0
@@ -881,7 +881,7 @@
 13970526,Friday,1
 13970527,Saturday,0
 13970528,Sunday,0
-13970529,Monday,0
+13970529,Monday,1
 13970530,Tuesday,0
 13970531,Wednesday,0
 13970601,Thursday,1
@@ -889,7 +889,7 @@
 13970603,Saturday,0
 13970604,Sunday,0
 13970605,Monday,0
-13970606,Tuesday,0
+13970606,Tuesday,1
 13970607,Wednesday,0
 13970608,Thursday,1
 13970609,Friday,1
@@ -910,8 +910,8 @@
 13970624,Saturday,0
 13970625,Sunday,0
 13970626,Monday,0
-13970627,Tuesday,0
-13970628,Wednesday,0
+13970627,Tuesday,1
+13970628,Wednesday,1
 13970629,Thursday,1
 13970630,Friday,1
 13970631,Saturday,0
@@ -951,7 +951,7 @@
 13970804,Friday,1
 13970805,Saturday,0
 13970806,Sunday,0
-13970807,Monday,0
+13970807,Monday,1
 13970808,Tuesday,0
 13970809,Wednesday,0
 13970810,Thursday,1
@@ -959,8 +959,8 @@
 13970812,Saturday,0
 13970813,Sunday,0
 13970814,Monday,0
-13970815,Tuesday,0
-13970816,Wednesday,0
+13970815,Tuesday,1
+13970816,Wednesday,1
 13970817,Thursday,1
 13970818,Friday,1
 13970819,Saturday,0
@@ -977,7 +977,7 @@
 13970830,Wednesday,0
 13970901,Thursday,1
 13970902,Friday,1
-13970903,Saturday,0
+13970903,Saturday,1
 13970904,Sunday,0
 13970905,Monday,0
 13970906,Tuesday,0
@@ -1107,7 +1107,7 @@
 13980111,Sunday,0
 13980112,Monday,1
 13980113,Tuesday,1
-13980114,Wednesday,0
+13980114,Wednesday,1
 13980115,Thursday,1
 13980116,Friday,1
 13980117,Saturday,0
@@ -1124,7 +1124,7 @@
 13980128,Wednesday,0
 13980129,Thursday,1
 13980130,Friday,1
-13980131,Saturday,0
+13980131,Saturday,1
 13980201,Sunday,0
 13980202,Monday,0
 13980203,Tuesday,0
@@ -1159,7 +1159,7 @@
 13980301,Wednesday,0
 13980302,Thursday,1
 13980303,Friday,1
-13980304,Saturday,0
+13980304,Saturday,1
 13980305,Sunday,0
 13980306,Monday,0
 13980307,Tuesday,0
@@ -1168,7 +1168,7 @@
 13980310,Friday,1
 13980311,Saturday,0
 13980312,Sunday,0
-13980313,Monday,0
+13980313,Monday,1
 13980314,Tuesday,1
 13980315,Wednesday,1
 13980316,Thursday,1
@@ -1236,7 +1236,7 @@
 13980516,Wednesday,0
 13980517,Thursday,1
 13980518,Friday,1
-13980519,Saturday,0
+13980519,Saturday,1
 13980520,Sunday,0
 13980521,Monday,0
 13980522,Tuesday,0
@@ -1244,7 +1244,7 @@
 13980524,Thursday,1
 13980525,Friday,1
 13980526,Saturday,0
-13980527,Sunday,0
+13980527,Sunday,1
 13980528,Monday,0
 13980529,Tuesday,0
 13980530,Wednesday,0
@@ -1265,8 +1265,8 @@
 13980614,Thursday,1
 13980615,Friday,1
 13980616,Saturday,0
-13980617,Sunday,0
-13980618,Monday,0
+13980617,Sunday,1
+13980618,Monday,1
 13980619,Tuesday,0
 13980620,Wednesday,0
 13980621,Thursday,1
@@ -1306,7 +1306,7 @@
 13980724,Wednesday,0
 13980725,Thursday,1
 13980726,Friday,1
-13980727,Saturday,0
+13980727,Saturday,1
 13980728,Sunday,0
 13980729,Monday,0
 13980730,Tuesday,0
@@ -1314,8 +1314,8 @@
 13980802,Thursday,1
 13980803,Friday,1
 13980804,Saturday,0
-13980805,Sunday,0
-13980806,Monday,0
+13980805,Sunday,1
+13980806,Monday,1
 13980807,Tuesday,0
 13980808,Wednesday,0
 13980809,Thursday,1
@@ -1323,7 +1323,7 @@
 13980811,Saturday,0
 13980812,Sunday,0
 13980813,Monday,0
-13980814,Tuesday,0
+13980814,Tuesday,1
 13980815,Wednesday,0
 13980816,Thursday,1
 13980817,Friday,1
@@ -1408,7 +1408,7 @@
 13981106,Sunday,0
 13981107,Monday,0
 13981108,Tuesday,0
-13981109,Wednesday,0
+13981109,Wednesday,1
 13981110,Thursday,1
 13981111,Friday,1
 13981112,Saturday,0
@@ -1447,7 +1447,7 @@
 13981215,Thursday,1
 13981216,Friday,1
 13981217,Saturday,0
-13981218,Sunday,0
+13981218,Sunday,1
 13981219,Monday,0
 13981220,Tuesday,0
 13981221,Wednesday,0
@@ -1478,7 +1478,7 @@
 13990117,Sunday,0
 13990118,Monday,0
 13990119,Tuesday,0
-13990120,Wednesday,0
+13990120,Wednesday,1
 13990121,Thursday,1
 13990122,Friday,1
 13990123,Saturday,0
@@ -1513,7 +1513,7 @@
 13990221,Sunday,0
 13990222,Monday,0
 13990223,Tuesday,0
-13990224,Wednesday,0
+13990224,Wednesday,1
 13990225,Thursday,1
 13990226,Friday,1
 13990227,Saturday,0
@@ -1523,7 +1523,7 @@
 13990231,Wednesday,0
 13990301,Thursday,1
 13990302,Friday,1
-13990303,Saturday,0
+13990303,Saturday,1
 13990304,Sunday,0
 13990305,Monday,0
 13990306,Tuesday,0
@@ -1546,7 +1546,7 @@
 13990323,Friday,1
 13990324,Saturday,0
 13990325,Sunday,0
-13990326,Monday,0
+13990326,Monday,1
 13990327,Tuesday,0
 13990328,Wednesday,0
 13990329,Thursday,1
@@ -1590,7 +1590,7 @@
 13990505,Sunday,0
 13990506,Monday,0
 13990507,Tuesday,0
-13990508,Wednesday,0
+13990508,Wednesday,1
 13990509,Thursday,1
 13990510,Friday,1
 13990511,Saturday,0
@@ -1660,7 +1660,7 @@
 13990713,Sunday,0
 13990714,Monday,0
 13990715,Tuesday,0
-13990716,Wednesday,0
+13990716,Wednesday,1
 13990717,Thursday,1
 13990718,Friday,1
 13990719,Saturday,0
@@ -1677,7 +1677,7 @@
 13990730,Wednesday,0
 13990801,Thursday,1
 13990802,Friday,1
-13990803,Saturday,0
+13990803,Saturday,1
 13990804,Sunday,0
 13990805,Monday,0
 13990806,Tuesday,0
@@ -1686,7 +1686,7 @@
 13990809,Friday,1
 13990810,Saturday,0
 13990811,Sunday,0
-13990812,Monday,0
+13990812,Monday,1
 13990813,Tuesday,0
 13990814,Wednesday,0
 13990815,Thursday,1
@@ -1762,7 +1762,7 @@
 13991025,Thursday,1
 13991026,Friday,1
 13991027,Saturday,0
-13991028,Sunday,0
+13991028,Sunday,1
 13991029,Monday,0
 13991030,Tuesday,0
 13991101,Wednesday,0
@@ -1833,7 +1833,7 @@
 14000106,Friday,1
 14000107,Saturday,0
 14000108,Sunday,0
-14000109,Monday,0
+14000109,Monday,1
 14000110,Tuesday,0
 14000111,Wednesday,0
 14000112,Thursday,1
@@ -1868,7 +1868,7 @@
 14000210,Friday,1
 14000211,Saturday,0
 14000212,Sunday,0
-14000213,Monday,0
+14000213,Monday,1
 14000214,Tuesday,0
 14000215,Wednesday,0
 14000216,Thursday,1
@@ -1877,7 +1877,7 @@
 14000219,Sunday,0
 14000220,Monday,0
 14000221,Tuesday,0
-14000222,Wednesday,0
+14000222,Wednesday,1
 14000223,Thursday,1
 14000224,Friday,1
 14000225,Saturday,0
@@ -1945,7 +1945,7 @@
 14000425,Friday,1
 14000426,Saturday,0
 14000427,Sunday,0
-14000428,Monday,0
+14000428,Monday,1
 14000429,Tuesday,0
 14000430,Wednesday,0
 14000431,Thursday,1
@@ -1953,7 +1953,7 @@
 14000502,Saturday,0
 14000503,Sunday,0
 14000504,Monday,0
-14000505,Tuesday,0
+14000505,Tuesday,1
 14000506,Wednesday,0
 14000507,Thursday,1
 14000508,Friday,1
@@ -1973,8 +1973,8 @@
 14000522,Friday,1
 14000523,Saturday,0
 14000524,Sunday,0
-14000525,Monday,0
-14000526,Tuesday,0
+14000525,Monday,1
+14000526,Tuesday,1
 14000527,Wednesday,0
 14000528,Thursday,1
 14000529,Friday,1
@@ -2014,7 +2014,7 @@
 14000701,Thursday,1
 14000702,Friday,1
 14000703,Saturday,0
-14000704,Sunday,0
+14000704,Sunday,1
 14000705,Monday,0
 14000706,Tuesday,0
 14000707,Wednesday,0
@@ -2022,9 +2022,9 @@
 14000709,Friday,1
 14000710,Saturday,0
 14000711,Sunday,0
-14000712,Monday,0
+14000712,Monday,1
 14000713,Tuesday,0
-14000714,Wednesday,0
+14000714,Wednesday,1
 14000715,Thursday,1
 14000716,Friday,1
 14000717,Saturday,0
@@ -2041,7 +2041,7 @@
 14000728,Wednesday,0
 14000729,Thursday,1
 14000730,Friday,1
-14000801,Saturday,0
+14000801,Saturday,1
 14000802,Sunday,0
 14000803,Monday,0
 14000804,Tuesday,0
@@ -2156,7 +2156,7 @@
 14001123,Saturday,0
 14001124,Sunday,0
 14001125,Monday,0
-14001126,Tuesday,0
+14001126,Tuesday,1
 14001127,Wednesday,0
 14001128,Thursday,1
 14001129,Friday,1
@@ -2170,7 +2170,7 @@
 14001207,Saturday,0
 14001208,Sunday,0
 14001209,Monday,0
-14001210,Tuesday,0
+14001210,Tuesday,1
 14001211,Wednesday,0
 14001212,Thursday,1
 14001213,Friday,1
@@ -2223,7 +2223,7 @@
 14010131,Wednesday,0
 14010201,Thursday,1
 14010202,Friday,1
-14010203,Saturday,0
+14010203,Saturday,1
 14010204,Sunday,0
 14010205,Monday,0
 14010206,Tuesday,0
@@ -2232,8 +2232,8 @@
 14010209,Friday,1
 14010210,Saturday,0
 14010211,Sunday,0
-14010212,Monday,0
-14010213,Tuesday,0
+14010212,Monday,1
+14010213,Tuesday,1
 14010214,Wednesday,0
 14010215,Thursday,1
 14010216,Friday,1
@@ -2300,7 +2300,7 @@
 14010415,Wednesday,0
 14010416,Thursday,1
 14010417,Friday,1
-14010418,Saturday,0
+14010418,Saturday,1
 14010419,Sunday,0
 14010420,Monday,0
 14010421,Tuesday,0
@@ -2308,7 +2308,7 @@
 14010423,Thursday,1
 14010424,Friday,1
 14010425,Saturday,0
-14010426,Sunday,0
+14010426,Sunday,1
 14010427,Monday,0
 14010428,Tuesday,0
 14010429,Wednesday,0
@@ -2328,8 +2328,8 @@
 14010512,Wednesday,0
 14010513,Thursday,1
 14010514,Friday,1
-14010515,Saturday,0
-14010516,Sunday,0
+14010515,Saturday,1
+14010516,Sunday,1
 14010517,Monday,0
 14010518,Tuesday,0
 14010519,Wednesday,0
@@ -2377,9 +2377,9 @@
 14010630,Wednesday,0
 14010631,Thursday,1
 14010701,Friday,1
-14010702,Saturday,0
+14010702,Saturday,1
 14010703,Sunday,0
-14010704,Monday,0
+14010704,Monday,1
 14010705,Tuesday,0
 14010706,Wednesday,0
 14010707,Thursday,1
@@ -2387,7 +2387,7 @@
 14010709,Saturday,0
 14010710,Sunday,0
 14010711,Monday,0
-14010712,Tuesday,0
+14010712,Tuesday,1
 14010713,Wednesday,0
 14010714,Thursday,1
 14010715,Friday,1
@@ -2471,7 +2471,7 @@
 14011003,Saturday,0
 14011004,Sunday,0
 14011005,Monday,0
-14011006,Tuesday,0
+14011006,Tuesday,1
 14011007,Wednesday,0
 14011008,Thursday,1
 14011009,Friday,1
@@ -2511,7 +2511,7 @@
 14011113,Thursday,1
 14011114,Friday,1
 14011115,Saturday,0
-14011116,Sunday,0
+14011116,Sunday,1
 14011117,Monday,0
 14011118,Tuesday,0
 14011119,Wednesday,0
@@ -2525,7 +2525,7 @@
 14011127,Thursday,1
 14011128,Friday,1
 14011129,Saturday,0
-14011130,Sunday,0
+14011130,Sunday,1
 14011201,Monday,0
 14011202,Tuesday,0
 14011203,Wednesday,0
@@ -2542,7 +2542,7 @@
 14011214,Sunday,0
 14011215,Monday,0
 14011216,Tuesday,0
-14011217,Wednesday,0
+14011217,Wednesday,1
 14011218,Thursday,1
 14011219,Friday,1
 14011220,Saturday,0
@@ -2577,7 +2577,7 @@
 14020120,Sunday,0
 14020121,Monday,0
 14020122,Tuesday,0
-14020123,Wednesday,0
+14020123,Wednesday,1
 14020124,Thursday,1
 14020125,Friday,1
 14020126,Saturday,0
@@ -2587,7 +2587,7 @@
 14020130,Wednesday,0
 14020131,Thursday,1
 14020201,Friday,1
-14020202,Saturday,0
+14020202,Saturday,1
 14020203,Sunday,0
 14020204,Monday,0
 14020205,Tuesday,0
@@ -2610,7 +2610,7 @@
 14020222,Friday,1
 14020223,Saturday,0
 14020224,Sunday,0
-14020225,Monday,0
+14020225,Monday,1
 14020226,Tuesday,0
 14020227,Wednesday,0
 14020228,Thursday,1
@@ -2654,7 +2654,7 @@
 14020404,Sunday,0
 14020405,Monday,0
 14020406,Tuesday,0
-14020407,Wednesday,0
+14020407,Wednesday,1
 14020408,Thursday,1
 14020409,Friday,1
 14020410,Saturday,0
@@ -2672,7 +2672,7 @@
 14020422,Thursday,1
 14020423,Friday,1
 14020424,Saturday,0
-14020425,Sunday,0
+14020425,Sunday,1
 14020426,Monday,0
 14020427,Tuesday,0
 14020428,Wednesday,0
@@ -2682,7 +2682,7 @@
 14020501,Sunday,0
 14020502,Monday,0
 14020503,Tuesday,0
-14020504,Wednesday,0
+14020504,Wednesday,1
 14020505,Thursday,1
 14020506,Friday,1
 14020507,Saturday,0
@@ -2723,7 +2723,7 @@
 14020611,Saturday,0
 14020612,Sunday,0
 14020613,Monday,0
-14020614,Tuesday,0
+14020614,Tuesday,1
 14020615,Wednesday,0
 14020616,Thursday,1
 14020617,Friday,1
@@ -2731,7 +2731,7 @@
 14020619,Sunday,0
 14020620,Monday,0
 14020621,Tuesday,0
-14020622,Wednesday,0
+14020622,Wednesday,1
 14020623,Thursday,1
 14020624,Friday,1
 14020625,Saturday,0
@@ -2741,7 +2741,7 @@
 14020629,Wednesday,0
 14020630,Thursday,1
 14020631,Friday,1
-14020701,Saturday,0
+14020701,Saturday,1
 14020702,Sunday,0
 14020703,Monday,0
 14020704,Tuesday,0
@@ -2750,7 +2750,7 @@
 14020707,Friday,1
 14020708,Saturday,0
 14020709,Sunday,0
-14020710,Monday,0
+14020710,Monday,1
 14020711,Tuesday,0
 14020712,Wednesday,0
 14020713,Thursday,1
@@ -2825,7 +2825,7 @@
 14020922,Wednesday,0
 14020923,Thursday,1
 14020924,Friday,1
-14020925,Saturday,0
+14020925,Saturday,1
 14020926,Sunday,0
 14020927,Monday,0
 14020928,Tuesday,0
@@ -2896,7 +2896,7 @@
 14021203,Thursday,1
 14021204,Friday,1
 14021205,Saturday,0
-14021206,Sunday,0
+14021206,Sunday,1
 14021207,Monday,0
 14021208,Tuesday,0
 14021209,Wednesday,0
@@ -2941,7 +2941,7 @@
 14030119,Sunday,0
 14030120,Monday,0
 14030121,Tuesday,0
-14030122,Wednesday,0
+14030122,Wednesday,1
 14030123,Thursday,1
 14030124,Friday,1
 14030125,Saturday,0
@@ -2965,7 +2965,7 @@
 14030212,Wednesday,0
 14030213,Thursday,1
 14030214,Friday,1
-14030215,Saturday,0
+14030215,Saturday,1
 14030216,Sunday,0
 14030217,Monday,0
 14030218,Tuesday,0
@@ -3009,7 +3009,7 @@
 14030325,Friday,1
 14030326,Saturday,0
 14030327,Sunday,0
-14030328,Monday,0
+14030328,Monday,1
 14030329,Tuesday,0
 14030330,Wednesday,0
 14030331,Thursday,1
@@ -3017,7 +3017,7 @@
 14030402,Saturday,0
 14030403,Sunday,0
 14030404,Monday,0
-14030405,Tuesday,0
+14030405,Tuesday,1
 14030406,Wednesday,0
 14030407,Thursday,1
 14030408,Friday,1
@@ -3037,8 +3037,8 @@
 14030422,Friday,1
 14030423,Saturday,0
 14030424,Sunday,0
-14030425,Monday,0
-14030426,Tuesday,0
+14030425,Monday,1
+14030426,Tuesday,1
 14030427,Wednesday,0
 14030428,Thursday,1
 14030429,Friday,1
@@ -3078,7 +3078,7 @@
 14030601,Thursday,1
 14030602,Friday,1
 14030603,Saturday,0
-14030604,Sunday,0
+14030604,Sunday,1
 14030605,Monday,0
 14030606,Tuesday,0
 14030607,Wednesday,0
@@ -3086,9 +3086,9 @@
 14030609,Friday,1
 14030610,Saturday,0
 14030611,Sunday,0
-14030612,Monday,0
+14030612,Monday,1
 14030613,Tuesday,0
-14030614,Wednesday,0
+14030614,Wednesday,1
 14030615,Thursday,1
 14030616,Friday,1
 14030617,Saturday,0
@@ -3105,7 +3105,7 @@
 14030628,Wednesday,0
 14030629,Thursday,1
 14030630,Friday,1
-14030631,Saturday,0
+14030631,Saturday,1
 14030701,Sunday,0
 14030702,Monday,0
 14030703,Tuesday,0
@@ -3220,7 +3220,7 @@
 14031022,Saturday,0
 14031023,Sunday,0
 14031024,Monday,0
-14031025,Tuesday,0
+14031025,Tuesday,1
 14031026,Wednesday,0
 14031027,Thursday,1
 14031028,Friday,1
@@ -3234,7 +3234,7 @@
 14031106,Saturday,0
 14031107,Sunday,0
 14031108,Monday,0
-14031109,Tuesday,0
+14031109,Tuesday,1
 14031110,Wednesday,0
 14031111,Thursday,1
 14031112,Friday,1
