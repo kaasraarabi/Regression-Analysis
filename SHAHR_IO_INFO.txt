@@ -2392,11 +2392,7 @@
 
 سپاهانشهر:
   Inputs: 213255 
-  Outputs: 213205 
-
-:
-  Inputs: 153139 153189 
-  Outputs: 
+  Outputs: 213205  
 
 آزادگان:
   Inputs: 113751 
@@ -3229,40 +3225,4 @@
 شلمچه:
   Inputs: 363801 
   Outputs: 363851 
-
-قدیمهمدان:
-  Inputs: 
-  Outputs: 753111 
-
-شهرصنعتیالبرز:
-  Inputs: 
-  Outputs: 153138 
-
-دهدست:
-  Inputs: 
-  Outputs: 853453 
-
-#NAME?:
-  Inputs: 163237 
-  Outputs: 
-
-ثلاث:
-  Inputs: 713502 
-  Outputs: 
-
-ديلم:
-  Inputs: 
-  Outputs: 364752 
-
-سیرج:
-  Inputs: 
-  Outputs: 453253 
-
-قلعگنچ:
-  Inputs: 643232 
-  Outputs: 
-
-مانشان:
-  Inputs: 
-  Outputs: 673410 
 

@@ -118,6 +118,7 @@ int main() {
 
     // Output results
     for (const auto& city : cities) {
+        if(city.inputs.empty() || city.outputs.empty()) continue;
         cout << city.name << ":\n";
         cout << "  Inputs: ";
         for (const auto& in : city.inputs) cout << in << " ";
