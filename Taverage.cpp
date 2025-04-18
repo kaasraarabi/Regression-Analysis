@@ -133,43 +133,9 @@ bool valid(const date& d) {
 const int MAX_DATE = 14040101;
 date day[MAX_DATE];
 vector<date> days;
-vector<date> normal;
 
-const int MAX_MEHVAR = 10'000'000;
-struct record {
-    int date, hour, all;
-    int stamp() {
-        return 24*day[date].order + hour;
-    }
-};
-vector<record> mehvar[MAX_MEHVAR];
-
-
-vector<int> Read(ifstream &inp) {
-    vector<int> res;
-    bool isDigit = false;
-    string line;
-    while(sz(line) < 3)
-        getline(inp, line);
-    for(auto u: line) {
-        if('0' <= u and u <= '9') {
-            if(!isDigit) {
-                res.push_back(0);
-                isDigit = true;
-            }
-            res.back() *= 10;
-            res.back() += u-'0';
-        } else isDigit = false;
-    }
-    return res;
-}
-
-inline bool unregular(ll a, ll b) {
-    return min(a, b)*5 < max(a, b)*4;
-}
-
-double tourism(ll count_in, ll hours_in, ll count_out, ll hours_out) {
-    return (double) (hours_out*count_in - hours_in*count_out) / (count_in * count_out);
+inline double average(vector<double> &a) {
+    return accumulate(a.begin(), a.end(), 0.0) / a.size();
 }
 
 int main(int arc, char** argv) {
@@ -180,94 +146,28 @@ int main(int arc, char** argv) {
         days.push_back(a);
         a.tomorrow();
     }
-    normal.push_back(days[0]);
-    for(int i = 2; i < sz(days); i++)
-        if(days[i].weekday() == "Monday") {
-            bool isNearHoliday = false;
-            for(int j = i-2; j <= i+2; j++)
-                isNearHoliday |= days[j].isHoliday();
-            if(!isNearHoliday)
-                normal.push_back(days[i]);
-        }
-    
-    ifstream taradod(argv[1]);
+
     string s;
-    taradod >> s;
-    assert(s == "ID,ALL");
-    while(taradod >> s) {
-        if(s == "") break;
-        record d = {0,0,0};
+    cin >> s;
+    // ensure(s == "SHAHR,START,END,PRO-TOURISM")
+    map<string, vector<double>> cityI;
+    while(cin >> s) {
         int p = 0;
-        while(p < 8)
-            d.date = d.date * 10 + (s[p++] - '0');
-        while(p < 10)
-            d.hour = d.hour * 10 + (s[p++] - '0');
-        int mehvarID = 0;
-        while(s[p] != ',')
-            mehvarID = mehvarID * 10 + (s[p++] - '0');
-        while (++p < sz(s))
-            d.all = d.all * 10 + (s[p] - '0');
-        mehvar[mehvarID].push_back(d);
+        string c = "";
+        while (s[p] != ',') c += s[p++];
+        while(s[++p] != ',');
+        while(s[++p] != ',');
+        double e = stod(s.substr(p+1));
+        cityI[c].push_back(e);
     }
-    
+    vector<pair<string, vector<double>>> city(cityI.begin(), cityI.end());
+    sort(city.begin(), city.end(), [](auto& a, auto& b) {
+        return average(a.second) > average(b.second);
+    });
     cout << fixed << setprecision(2);
-    cout << "SHAHR,START,END,PRO-TOURISM" << '\n';
-    ifstream ioc(argv[2]); // Input/Output of Cities
-    string shahr;
-    while (ioc >> shahr) {
-        if(shahr == "") break;
-        vector<pair<pair<string, string>, double>> R;
-        int capturedDays = 0;
-        shahr.pop_back();
-        vector<int> in = Read(ioc);
-        vector<int> out = Read(ioc);
-        int pin[in.size()] = {}, pout[out.size()] = {};
-        getline(ioc, s);
-        for(int i = 1; i < sz(normal); i++) {
-            date st = normal[i-1], en = normal[i];
-            int len = (en.order - st.order) * 24;
-            ll count_in[len] = {}, count_out[len] = {};
-            for(int j = 0; j < sz(in); j++) {
-                while(pin[j] < sz(mehvar[in[j]]) && day[mehvar[in[j]][pin[j]].date].order < st.order) pin[j]++;
-                if(pin[j] < sz(mehvar[in[j]]) && day[mehvar[in[j]][pin[j]].date].order == st.order) {
-                    int origin = mehvar[in[j]][pin[j]].stamp();
-                    while(pin[j] < sz(mehvar[in[j]]) && day[mehvar[in[j]][pin[j]].date].order < en.order) {
-                        count_in[mehvar[in[j]][pin[j]].stamp() - origin] += mehvar[in[j]][pin[j]].all;
-                        pin[j]++;
-                    }
-                }
-            }
-            for(int j = 0; j < sz(out); j++) {
-                while(pout[j] < sz(mehvar[out[j]]) && day[mehvar[out[j]][pout[j]].date].order < st.order) pout[j]++;
-                if(pout[j] < sz(mehvar[out[j]]) && day[mehvar[out[j]][pout[j]].date].order == st.order) {
-                    int origin = mehvar[out[j]][pout[j]].stamp();
-                    while(pout[j] < sz(mehvar[out[j]]) && day[mehvar[out[j]][pout[j]].date].order < en.order) {
-                        count_out[mehvar[out[j]][pout[j]].stamp() - origin] += mehvar[out[j]][pout[j]].all;
-                        pout[j]++;
-                    }
-                }
-            }
-            ll diffOut = 0, diffIn = 0, hours_in = 0, hours_out = 0, both = 0;
-            for(int j = 0; j < len; j++) {
-                if(count_in[j] == 0 || count_out[j] == 0) continue;
-                both += min(count_in[j], count_out[j]);
-                if(count_in[j] < count_out[j]) {
-                    diffOut += count_out[j] - count_in[j];
-                    hours_out += j*(count_out[j] - count_in[j]);
-                } else {
-                    diffIn += count_in[j] - count_out[j];
-                    hours_in += j*(count_in[j] - count_out[j]);
-                }
-            }
-            if(diffIn == 0 || diffOut == 0 || hours_in == 0 || hours_out == 0 ||
-                 unregular(both+diffIn, both+diffOut) || both < 200000 || diffIn+diffOut < 70000) continue;
-            R.push_back({make_pair(st.ID(), en.ID()), tourism(diffIn, hours_in, diffOut, hours_out)*7/len});
-            capturedDays += len / 24;
-        }
-        if(capturedDays < 1500) continue;
-        for(auto [tss, tourism]: R)
-            cout << shahr << ',' << tss.first << ',' << tss.second << ',' << tourism << '\n';
-    }
+    cout << "SHAHR,Average\n";
+    for(auto [c, v]: city)
+        cout << c << "," << average(v) << "\n";
     
     return 0;
 }
