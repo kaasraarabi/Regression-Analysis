@@ -216,6 +216,8 @@ int main(int arc, char** argv) {
     string shahr;
     while (ioc >> shahr) {
         if(shahr == "") break;
+        vector<pair<pair<string, string>, double>> R;
+        int capturedDays = 0;
         shahr.pop_back();
         vector<int> in = Read(ioc);
         vector<int> out = Read(ioc);
@@ -223,7 +225,7 @@ int main(int arc, char** argv) {
         getline(ioc, s);
         for(int i = 1; i < sz(normal); i++) {
             date st = normal[i-1], en = normal[i];
-            ll len = (en.order - st.order) * 24;
+            int len = (en.order - st.order) * 24;
             ll count_in[len] = {}, count_out[len] = {};
             for(int j = 0; j < sz(in); j++) {
                 while(pin[j] < sz(mehvar[in[j]]) && day[mehvar[in[j]][pin[j]].date].order < st.order) pin[j]++;
@@ -257,9 +259,14 @@ int main(int arc, char** argv) {
                     hours_in += j*(count_in[j] - count_out[j]);
                 }
             }
-            if(diffIn == 0 || diffOut == 0 || hours_in == 0 || hours_out == 0 || unregular(both+diffIn, both+diffOut)) continue;
-            cout << shahr << ',' << st.ID() << ',' << en.ID() << ',' << tourism(diffIn, hours_in, diffOut, hours_out)*7/len << '\n';
+            if(diffIn == 0 || diffOut == 0 || hours_in == 0 || hours_out == 0 ||
+                 unregular(both+diffIn, both+diffOut) || both < 200000 || diffIn+diffOut < 70000) continue;
+            R.push_back({make_pair(st.ID(), en.ID()), tourism(diffIn, hours_in, diffOut, hours_out)*7/len});
+            capturedDays += len / 24;
         }
+        if(capturedDays < 1500) continue;
+        for(auto [tss, tourism]: R)
+            cout << shahr << ',' << tss.first << ',' << tss.second << ',' << tourism << '\n';
     }
     
     return 0;
