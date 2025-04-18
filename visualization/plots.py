@@ -1,6 +1,7 @@
 import pandas as pd
 import plotly.express as px
 from plotly.graph_objects import Figure
+import jdatetime
 
 # Visualization functions for traffic analysis
 
@@ -24,7 +25,10 @@ def plot_time_series(df: pd.DataFrame, date_col: str, value_col: str, title: str
     Line chart of a time series for a given value_col.
     df should contain date_col and value_col.
     """
-    fig = px.line(df, x=date_col, y=value_col, title=title)
+    # convert Gregorian dates to Jalali date strings
+    df_copy = df.copy()
+    df_copy['jalali_date'] = df_copy[date_col].apply(lambda d: jdatetime.date.fromgregorian(date=d).strftime('%Y-%m-%d'))
+    fig = px.line(df_copy, x='jalali_date', y=value_col, title=title)
     return fig
 
 
@@ -56,6 +60,6 @@ def plot_tourism_heatmap(df: pd.DataFrame) -> Figure:
     """
     hubs = df[df['is_hub']]
     fig = px.density_heatmap(hubs, x=hubs['date'].dt.month, y=hubs['date'].dt.day,
-                               z='flow', facet_col='SHAHR', title='Tourism Hub Daily Heatmap')
+                               z='flow', facet_col='SHAHR', title='Tourism Hub Daily Heatmap', facet_col_spacing=0.01)
     fig.update_layout(xaxis_title='Month', yaxis_title='Day')
     return fig

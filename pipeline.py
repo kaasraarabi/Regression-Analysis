@@ -1,5 +1,7 @@
 import os
 import pandas as pd
+import jdatetime
+import plotly.express as px
 from data_loader.did_loader import load_did_all
 from data_loader.metadata_loader import get_axis_metadata, load_metadata
 from data_loader.calendar_loader import load_calendar
@@ -11,6 +13,25 @@ from visualization.plots import plot_regional_traffic, plot_time_series, plot_ho
 
 def main(data_dir='.', output_dir='outputs'):
     os.makedirs(output_dir, exist_ok=True)
+    # create a folder for per-axis results and add a note
+    results_dir = os.path.join(output_dir, 'results')
+    os.makedirs(results_dir, exist_ok=True)
+    with open(os.path.join(results_dir, 'README.txt'), 'w') as note:
+        note.write(
+            'Results directory contains subfolders for each experiment and region/city:\n'
+            '- <ProvinceName>/monthly_traffic.html: per-province monthly flow plots (HTML)\n'
+            '- city_daily_flow/*.png: daily flow per city\n'
+            '- city_monthly_flow/*.png: monthly flow per city\n'
+            '- city_imbalance/*.png: smoothed imbalance per city\n'
+            '- city_holiday_vs_weekday/*.png: holiday vs weekday flow per city\n'
+            '- city_before_after_holiday/*.png: avg flow before/after holidays per city\n'
+            '- city_tourism_monthly/*.png: monthly tourism flow per city\n'
+            '- city_entries_daily/*.png: daily entries per city\n'
+            '- city_entries_monthly/*.png: monthly entries per city\n'
+            '- city_entries_6M/*.png: semiannual entries per city\n'
+            '- city_entries_yearly/*.png: yearly entries per city\n'
+        )
+
     # Load data
     did_path = os.path.join(data_dir, 'DID-ALL.csv')
     meta_path = os.path.join(data_dir, 'codeMehvar.csv')
@@ -22,6 +43,12 @@ def main(data_dir='.', output_dir='outputs'):
     meta_df = load_metadata(meta_path)
     df_cal = load_calendar(cal_path)
     df_tour = load_tourism(tour_path)
+
+    # Filter experiments to ignore before Jalali year 1398
+    start_gregorian = jdatetime.date(1398, 1, 1).togregorian()
+    df_did = df_did[df_did['date'] >= pd.to_datetime(start_gregorian)]
+    df_cal = df_cal[df_cal['date'] >= pd.to_datetime(start_gregorian)]
+    df_tour = df_tour[df_tour['date'] >= pd.to_datetime(start_gregorian)]
 
     # Aggregations
     daily = aggregate_by_period(df_did, period='D')
@@ -52,6 +79,124 @@ def main(data_dir='.', output_dir='outputs'):
 
     fig4 = plot_tourism_heatmap(df_tour)
     fig4.write_html(os.path.join(output_dir, 'tourism_heatmap.html'))
+
+    # aggregate monthly traffic by region (province)
+    # ensure axis matches metadata type
+    monthly['axis'] = monthly['axis'].astype(str)
+    monthly_region = monthly.merge(meta_df[['axis','province']], on='axis', how='left')
+    monthly_region = monthly_region.groupby(['province','date'])['ALL'].sum().reset_index()
+    # generate a monthly time-series plot for each province in its own folder
+    for province in monthly_region['province'].unique():
+        prov_df = monthly_region[monthly_region['province'] == province]
+        fig = plot_time_series(prov_df, 'date', 'ALL', f"Monthly Traffic for {province}")
+        # create a folder named after the province (spaces replaced)
+        province_folder = os.path.join(results_dir, province.replace(' ', '_'))
+        os.makedirs(province_folder, exist_ok=True)
+        # name file with Persian province name
+        filename = f"{province.replace(' ', '_')}_monthly_traffic.html"
+        fig.write_html(os.path.join(province_folder, filename))
+
+    # Prepare per-city experiments
+    # compute total flow per city (entries+exits)
+    city_flow = entries_exits.copy()
+    city_flow['flow'] = city_flow['entries'] + city_flow['exits']
+
+    # Create experiment directories
+    exp_names = [
+        'city_daily_flow', 'city_monthly_flow',
+        'city_imbalance', 'city_holiday_vs_weekday',
+        'city_before_after_holiday', 'city_tourism_monthly',
+        'city_entries_daily', 'city_entries_monthly', 'city_entries_6M', 'city_entries_yearly'
+    ]
+    for exp in exp_names:
+        os.makedirs(os.path.join(results_dir, exp), exist_ok=True)
+
+    # 1) Daily and Monthly flow per city
+    # Daily
+    for city in city_flow['city'].unique():
+        df_city = city_flow[city_flow['city'] == city]
+        fig = plot_time_series(df_city, 'date', 'flow', f'Daily Flow for {city}')
+        fig.write_image(os.path.join(results_dir, 'city_daily_flow', f'{city}.png'))
+    # Monthly
+    monthly_city = city_flow.set_index('date').groupby([pd.Grouper(freq='M'), 'city'])['flow'].sum().reset_index()
+    for city in monthly_city['city'].unique():
+        df_city = monthly_city[monthly_city['city'] == city]
+        fig = plot_time_series(df_city, 'date', 'flow', f'Monthly Flow for {city}')
+        fig.write_image(os.path.join(results_dir, 'city_monthly_flow', f'{city}.png'))
+
+    # 2) Smoothed imbalance per city
+    for city in smoothed['city'].unique():
+        df_city = smoothed[smoothed['city'] == city]
+        fig = plot_time_series(df_city, 'date', 'smoothed_imbalance', f'Smoothed Imbalance for {city}')
+        fig.write_image(os.path.join(results_dir, 'city_imbalance', f'{city}.png'))
+
+    # 3) Holiday vs Weekday per city
+    # aggregate flows by city and is_holiday
+    hw_city = city_flow.merge(df_cal, on='date', how='left')
+    hw_city = hw_city.groupby(['city', 'is_holiday'])['flow'].sum().unstack(fill_value=0).reset_index()
+    hw_city.columns = ['city', 'weekday_flow', 'holiday_flow']
+    for city in hw_city['city']:
+        df_hw = hw_city[hw_city['city'] == city]
+        fig = plot_holiday_vs_weekday(df_hw)
+        fig.write_image(os.path.join(results_dir, 'city_holiday_vs_weekday', f'{city}.png'))
+
+    # 4) Day Before/After Holiday per city
+    from datetime import timedelta
+    # get holiday dates
+    holidays = df_cal[df_cal['is_holiday'] == 1]['date'].unique()
+    records = []
+    city_flow_idx = city_flow.set_index('date')
+    for hd in holidays:
+        bd = hd - timedelta(days=1)
+        ad = hd + timedelta(days=1)
+        before = city_flow_idx.loc[bd].groupby('city')['flow'].sum().rename('before') if bd in city_flow_idx.index else pd.Series(dtype=float, name='before')
+        after = city_flow_idx.loc[ad].groupby('city')['flow'].sum().rename('after') if ad in city_flow_idx.index else pd.Series(dtype=float, name='after')
+        rec = pd.concat([before, after], axis=1).fillna(0)
+        records.append(rec)
+    if records:
+        df_ba = pd.concat(records).groupby(level=0).mean().reset_index()
+        # rename first column (index) to 'city'
+        df_ba.rename(columns={df_ba.columns[0]: 'city'}, inplace=True)
+    else:
+        df_ba = pd.DataFrame(columns=['city', 'before', 'after'])
+    for city in df_ba['city']:
+        vals = df_ba[df_ba['city'] == city].iloc[0]
+        fig = px.bar(x=['before', 'after'], y=[vals['before'], vals['after']], title=f'Avg Flow Before/After Holidays for {city}', labels={'x':'Period','y':'Avg Flow'})
+        fig.write_image(os.path.join(results_dir, 'city_before_after_holiday', f'{city}.png'))
+
+    # 5) Monthly Tourism per city
+    tour = df_tour.copy()
+    tour_city = tour.groupby(['SHAHR', pd.Grouper(key='date', freq='M')])['flow'].sum().reset_index().rename(columns={'SHAHR':'city'})
+    for city in tour_city['city'].unique():
+        df_t = tour_city[tour_city['city'] == city]
+        fig = plot_time_series(df_t, 'date', 'flow', f'Monthly Tourism Flow for {city}')
+        fig.write_image(os.path.join(results_dir, 'city_tourism_monthly', f'{city}.png'))
+
+    # 6) City-Level Entries over different time scales
+    entries_only = entries_exits[['date','city','entries']].copy()
+    # daily entries
+    for city in entries_only['city'].unique():
+        df_e = entries_only[entries_only['city']==city]
+        fig = plot_time_series(df_e, 'date', 'entries', f'Daily Entries for {city}')
+        fig.write_image(os.path.join(results_dir, 'city_entries_daily', f'{city}.png'))
+    # monthly entries
+    entries_monthly = entries_only.set_index('date').groupby([pd.Grouper(freq='M'),'city'])['entries'].sum().reset_index()
+    for city in entries_monthly['city'].unique():
+        df_e = entries_monthly[entries_monthly['city']==city]
+        fig = plot_time_series(df_e, 'date', 'entries', f'Monthly Entries for {city}')
+        fig.write_image(os.path.join(results_dir, 'city_entries_monthly', f'{city}.png'))
+    # 6-month entries
+    entries_6m = entries_only.set_index('date').groupby([pd.Grouper(freq='6M'),'city'])['entries'].sum().reset_index()
+    for city in entries_6m['city'].unique():
+        df_e = entries_6m[entries_6m['city']==city]
+        fig = plot_time_series(df_e, 'date', 'entries', f'Semiannual Entries for {city}')
+        fig.write_image(os.path.join(results_dir, 'city_entries_6M', f'{city}.png'))
+    # yearly entries
+    entries_yearly = entries_only.set_index('date').groupby([pd.Grouper(freq='Y'),'city'])['entries'].sum().reset_index()
+    for city in entries_yearly['city'].unique():
+        df_e = entries_yearly[entries_yearly['city']==city]
+        fig = plot_time_series(df_e, 'date', 'entries', f'Yearly Entries for {city}')
+        fig.write_image(os.path.join(results_dir, 'city_entries_yearly', f'{city}.png'))
 
     print(f"Generated outputs in {output_dir}")
 

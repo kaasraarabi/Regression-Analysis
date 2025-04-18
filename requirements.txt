@@ -3,3 +3,4 @@ plotly
 scikit-learn
 joblib
 jdatetime
+kaleido
