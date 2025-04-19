@@ -36,7 +36,7 @@ def main(data_dir='.', output_dir='outputs'):
     did_path = os.path.join(data_dir, 'DID-ALL.csv')
     meta_path = os.path.join(data_dir, 'codeMehvar.csv')
     cal_path = os.path.join(data_dir, 'calender.csv')
-    tour_path = os.path.join(data_dir, 'tourism-pro_filtered.csv')
+    tour_path = os.path.join(data_dir, 'tpf.csv')
 
     df_did = load_did_all(did_path)
     metadata_dict = get_axis_metadata(meta_path)
@@ -50,6 +50,12 @@ def main(data_dir='.', output_dir='outputs'):
     df_cal = df_cal[df_cal['date'] >= pd.to_datetime(start_gregorian)]
     df_tour = df_tour[df_tour['date'] >= pd.to_datetime(start_gregorian)]
 
+    # Load notable cities list
+    notable_file = os.path.join(data_dir, 'NotableCities.txt')
+    with open(notable_file, 'r', encoding='utf-8') as f:
+        notable_cities = [city.strip() for city in f.read().split(',') if city.strip()]
+    allowed_cities = set(notable_cities)
+
     # Aggregations
     daily = aggregate_by_period(df_did, period='D')
     monthly = aggregate_by_period(df_did, period='M')
@@ -62,6 +68,9 @@ def main(data_dir='.', output_dir='outputs'):
     entries_exits = compute_entries_exits(df_did, metadata_dict)
     imbalance = compute_imbalance(entries_exits)
     smoothed = smooth_spikes(imbalance)
+
+    # Filter smoothed imbalance for notable cities
+    smoothed = smoothed[smoothed['city'].isin(allowed_cities)]
 
     # Clustering and anomalies
     anomalies = detect_anomalies(daily, feature_col='ALL')
@@ -101,6 +110,9 @@ def main(data_dir='.', output_dir='outputs'):
     city_flow = entries_exits.copy()
     city_flow['flow'] = city_flow['entries'] + city_flow['exits']
 
+    # Filter city_flow for notable cities only
+    city_flow = city_flow[city_flow['city'].isin(allowed_cities)]
+
     # Create experiment directories
     exp_names = [
         'city_daily_flow', 'city_monthly_flow',
@@ -135,6 +147,10 @@ def main(data_dir='.', output_dir='outputs'):
     hw_city = city_flow.merge(df_cal, on='date', how='left')
     hw_city = hw_city.groupby(['city', 'is_holiday'])['flow'].sum().unstack(fill_value=0).reset_index()
     hw_city.columns = ['city', 'weekday_flow', 'holiday_flow']
+
+    # Filter holiday vs weekday data for notable cities
+    hw_city = hw_city[hw_city['city'].isin(allowed_cities)]
+
     for city in hw_city['city']:
         df_hw = hw_city[hw_city['city'] == city]
         fig = plot_holiday_vs_weekday(df_hw)
@@ -155,10 +171,13 @@ def main(data_dir='.', output_dir='outputs'):
         records.append(rec)
     if records:
         df_ba = pd.concat(records).groupby(level=0).mean().reset_index()
-        # rename first column (index) to 'city'
         df_ba.rename(columns={df_ba.columns[0]: 'city'}, inplace=True)
     else:
         df_ba = pd.DataFrame(columns=['city', 'before', 'after'])
+
+    # Filter before/after holiday data for notable cities
+    df_ba = df_ba[df_ba['city'].isin(allowed_cities)]
+
     for city in df_ba['city']:
         vals = df_ba[df_ba['city'] == city].iloc[0]
         fig = px.bar(x=['before', 'after'], y=[vals['before'], vals['after']], title=f'Avg Flow Before/After Holidays for {city}', labels={'x':'Period','y':'Avg Flow'})
@@ -167,6 +186,10 @@ def main(data_dir='.', output_dir='outputs'):
     # 5) Monthly Tourism per city
     tour = df_tour.copy()
     tour_city = tour.groupby(['SHAHR', pd.Grouper(key='date', freq='M')])['flow'].sum().reset_index().rename(columns={'SHAHR':'city'})
+
+    # Filter tourism data for notable cities
+    tour_city = tour_city[tour_city['city'].isin(allowed_cities)]
+
     for city in tour_city['city'].unique():
         df_t = tour_city[tour_city['city'] == city]
         fig = plot_time_series(df_t, 'date', 'flow', f'Monthly Tourism Flow for {city}')
@@ -174,6 +197,10 @@ def main(data_dir='.', output_dir='outputs'):
 
     # 6) City-Level Entries over different time scales
     entries_only = entries_exits[['date','city','entries']].copy()
+
+    # Filter entries data for notable cities
+    entries_only = entries_only[entries_only['city'].isin(allowed_cities)]
+
     # daily entries
     for city in entries_only['city'].unique():
         df_e = entries_only[entries_only['city']==city]
