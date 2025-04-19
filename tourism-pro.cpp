@@ -225,6 +225,7 @@ int main(int arc, char** argv) {
         getline(ioc, s);
         for(int i = 1; i < sz(normal); i++) {
             date st = normal[i-1], en = normal[i];
+            if(en.ID() < "13980101") continue;
             int len = (en.order - st.order) * 24;
             ll count_in[len] = {}, count_out[len] = {};
             for(int j = 0; j < sz(in); j++) {
@@ -264,7 +265,7 @@ int main(int arc, char** argv) {
             R.push_back({make_pair(st.ID(), en.ID()), tourism(diffIn, hours_in, diffOut, hours_out)*7/len});
             capturedDays += len / 24;
         }
-        if(capturedDays < 1800) continue;
+        if(capturedDays < 1400) continue;
         for(auto [tss, tourism]: R)
             cout << shahr << ',' << tss.first << ',' << tss.second << ',' << tourism << '\n';
     }
