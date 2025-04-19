@@ -260,11 +260,11 @@ int main(int arc, char** argv) {
                 }
             }
             if(diffIn == 0 || diffOut == 0 || hours_in == 0 || hours_out == 0 ||
-                 unregular(both+diffIn, both+diffOut) || both < 200000 || diffIn+diffOut < 70000) continue;
+                 unregular(both+diffIn, both+diffOut) || both < 250000 || diffIn+diffOut < 100000) continue;
             R.push_back({make_pair(st.ID(), en.ID()), tourism(diffIn, hours_in, diffOut, hours_out)*7/len});
             capturedDays += len / 24;
         }
-        if(capturedDays < 1500) continue;
+        if(capturedDays < 1800) continue;
         for(auto [tss, tourism]: R)
             cout << shahr << ',' << tss.first << ',' << tss.second << ',' << tourism << '\n';
     }
