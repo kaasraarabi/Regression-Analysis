@@ -15,7 +15,7 @@ int main() {
     ios_base::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
     string s;
     cin >> s;
-    constexpr int part = 1;
+    constexpr int part = 3;
     // ensure(s == "SHAHR,START,END,PRO-TOURISM")
     map<string, map<int, vector<double>>> cityI;
     while(cin >> s) {
