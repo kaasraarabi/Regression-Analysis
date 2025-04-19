@@ -94,6 +94,22 @@ def main(data_dir='.', output_dir='outputs'):
     monthly['axis'] = monthly['axis'].astype(str)
     monthly_region = monthly.merge(meta_df[['axis','province']], on='axis', how='left')
     monthly_region = monthly_region.groupby(['province','date'])['ALL'].sum().reset_index()
+
+    # Pie charts for regional traffic (raw and per-capita)
+    pop_df = pd.read_csv(os.path.join(data_dir, 'population.csv'))
+    # strip leading numeric codes from province for clean labels
+    monthly_region['province'] = monthly_region['province'].str.replace(r'^\d+\s*', '', regex=True)
+    # total traffic per province
+    traffic_tot = monthly_region.groupby('province')['ALL'].sum().reset_index()
+    # raw pie chart with proper province names
+    fig_pie_raw = px.pie(traffic_tot, values='ALL', names='province', title='Total Traffic by Province')
+    fig_pie_raw.write_html(os.path.join(output_dir, 'regional_traffic_pie.html'))
+    # normalize by population
+    merged = traffic_tot.merge(pop_df, left_on='province', right_on='Province', how='left')
+    merged['traffic_per_capita'] = merged['ALL'] / merged['Population']
+    fig_pie_norm = px.pie(merged, values='traffic_per_capita', names='province', title='Traffic per Capita by Province')
+    fig_pie_norm.write_html(os.path.join(output_dir, 'regional_traffic_pie_normalized.html'))
+
     # generate a monthly time-series plot for each province in its own folder
     for province in monthly_region['province'].unique():
         prov_df = monthly_region[monthly_region['province'] == province]
@@ -218,6 +234,11 @@ def main(data_dir='.', output_dir='outputs'):
         df_e = entries_6m[entries_6m['city']==city]
         fig = plot_time_series(df_e, 'date', 'entries', f'Semiannual Entries for {city}')
         fig.write_image(os.path.join(results_dir, 'city_entries_6M', f'{city}.png'))
+
+    # Combined semiannual entries for all cities
+    fig_6m_all = px.line(entries_6m, x='date', y='entries', color='city', title='Semiannual Entries Over Time by City')
+    fig_6m_all.write_html(os.path.join(output_dir, 'city_entries_6M.html'))
+
     # yearly entries
     entries_yearly = entries_only.set_index('date').groupby([pd.Grouper(freq='Y'),'city'])['entries'].sum().reset_index()
     for city in entries_yearly['city'].unique():
